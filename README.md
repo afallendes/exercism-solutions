@@ -1,4 +1,4 @@
-# Exercism Personal Solutions Archive
+# Exercism Solutions
 
 An archive containing my own uploaded solutions to problems on the [Excercism](https://exercism.io/profiles/afallendes) platform.
 
