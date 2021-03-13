@@ -6,37 +6,37 @@ AMOUNT_ERROR_MESSAGE = 'Amount is not valid'
 
 class BankAccount:
     def __init__(self) -> None:
-        self._open = False
-        self._lock = threading.Lock()
+        self.__open = False
+        self.__lock = threading.Lock()
 
     def get_balance(self) -> None:
-        if self._open:
-            return self._balance
+        if self.__open:
+            return self.__balance
         raise ValueError(ACCOUNT_CLOSED_ERROR_MESSAGE)
 
     def open(self) -> None:
-        if self._open:
+        if self.__open:
             raise ValueError(ACCOUNT_OPENED_ERROR_MESSAGE)
-        self._open = True
-        self._balance = 0
+        self.__open = True
+        self.__balance = 0
 
     def deposit(self, amount:int) -> None:
-        with self._lock:
-            if not (self._open):
+        with self.__lock:
+            if not (self.__open):
                 raise ValueError(ACCOUNT_CLOSED_ERROR_MESSAGE)
             if not (amount > 0):
                 raise ValueError(AMOUNT_ERROR_MESSAGE)
-            self._balance += amount
+            self.__balance += amount
 
     def withdraw(self, amount:int) -> None:
-        with self._lock:
-            if not (self._open):
+        with self.__lock:
+            if not (self.__open):
                 raise ValueError(ACCOUNT_CLOSED_ERROR_MESSAGE)
-            if not (amount > 0 and self._balance >= amount):
+            if not (amount > 0 and self.__balance >= amount):
                 raise ValueError(AMOUNT_ERROR_MESSAGE)
-            self._balance -= amount
+            self.__balance -= amount
 
     def close(self) -> None:
-        if not (self._open):
+        if not (self.__open):
             raise ValueError(ACCOUNT_CLOSED_ERROR_MESSAGE)
-        self._open = False
+        self.__open = False
