@@ -1,8 +1,10 @@
+# Exercism
+**/.exercism/
+
 # Python Track
 python/.venv/
 python/**/__pycache__/
 python/**/.pytest_cache/
-python/**/.exercism/
 
 # JavaScript Track
 javascript/package-lock.json
@@ -13,4 +15,9 @@ javascript/**/babel.config.js
 javascript/**/package-lock.json
 javascript/**/package.json
 javascript/**/node_modules/
-javascript/**/.exercism/
+
+# Java Track
+java/**/.gradle/
+java/**/.exercism/
+java/**/build/
+java/**/bin/
