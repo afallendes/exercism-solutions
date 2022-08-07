@@ -1,9 +1,21 @@
+import java.util.HashMap;
+
 class Scrabble {
 
     private String word;
 
+    private HashMap<String, Integer> scores = new HashMap<String, Integer>();
+
     Scrabble(String word) {
         this.word = word.toUpperCase();
+
+        scores.put("AEIOULNRST", 1);
+        scores.put("DG", 2);
+        scores.put("BCMP", 3);
+        scores.put("FHVWY", 4);
+        scores.put("K", 5);
+        scores.put("JX", 8);
+        scores.put("QZ", 10);
     }
 
     private boolean isFound(char c, String s) {
@@ -13,27 +25,17 @@ class Scrabble {
     int getScore() {
         char c;
         int totalScore = 0;
+		
+		for (int i = 0; i < word.length(); i++) {
+			c = word.charAt(i);
         
-        for (int i = 0; i < word.length(); i++) {
-            c = word.charAt(i);
-            if ( isFound(c, "AEIOULNRST") ) {
-                totalScore += 1;
-            } else if ( isFound(c, "DG") ) {
-                totalScore += 2;
-            } else if ( isFound(c, "BCMP") ) {
-                totalScore += 3;
-            } else if ( isFound(c, "FHVWY") ) {
-                totalScore += 4;
-            } else if ( 'K' == c ) {
-                totalScore += 5;
-            } else if ( isFound(c, "JX") ) {
-                totalScore += 8;
-            } else if ( isFound(c, "QZ") ) {
-                totalScore += 10;
-            }
-        }
+			for ( HashMap.Entry<String, Integer> e : scores.entrySet() ) {
+				if ( isFound(c, e.getKey()) ) {
+					totalScore += e.getValue();
+				}
+			}
+		}
 
         return totalScore;
     }
-
 }
