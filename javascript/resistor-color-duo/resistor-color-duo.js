@@ -1,17 +1,3 @@
-//
-// This is only a SKELETON file for the 'Resistor Color Duo' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
-export const decodedValue = (colors) => {
-  return parseInt(
-    colors
-      .slice(0, 2)
-      .map(function(color) { return COLORS.indexOf(color) })
-      .join('')
-  );
-};
-
 export const COLORS = [
   'black',
   'brown',
@@ -24,3 +10,14 @@ export const COLORS = [
   'grey',
   'white',
 ];
+
+function colorValue(color) {
+  // assuming all color inputs are valid in COLORS
+  return COLORS.indexOf(color);
+}
+
+export const decodedValue = (colors) => {
+  // assuming colors has always more than two elements
+  const [color1, color2] = colors;
+  return colorValue(color1) * 10 + colorValue(color2);
+}
